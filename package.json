@@ -1,0 +1,42 @@
+{
+	"name": "builder-catalgue",
+	"version": "0.0.0",
+	"license": "UNLICENSED",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/akindo/builder-catalogue.git"
+	},
+	"engines": {
+		"node": "^20.10.0",
+		"npm": "^10.2.3"
+	},
+	"type": "module",
+	"main": "./dist/src/app.js",
+	"scripts": {
+		"tsc": "tsc --noEmit",
+		"build": "tsc --build",
+		"build:watch": "tsc --build --watch",
+		"clean": "tsc --build --clean",
+		"dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"npm run start:watch\"",
+		"dev:standard": "npm run build && NODE_ENV=development npm start",
+		"start": "node .",
+		"start:watch": "node --watch .",
+		"test": "npm run test:unit",
+		"test:unit": "NODE_ENV=test mocha dist/test/**/*unit.test.js --exit --recursive --timeout 15000",
+		"test:integration": "NODE_ENV=test mocha dist/test/**/*integration.test.js --exit --recursive --timeout 15000",
+		"test:coverage": "npm test -- --coverage",
+		"lint": "npx xo",
+		"lint:fix": "npx xo --fix",
+		"prettier": "prettier --check ./src/**/*.ts",
+		"prettier:fix": "prettier --write ./src/**/*.ts"
+	},
+	"devDependencies": {
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.10.7",
+		"concurrently": "8.2.2",
+		"mocha": "10.2.0",
+		"prettier": "3.1.1",
+		"typescript": "5.3.3",
+		"xo": "0.56.0"
+	}
+}
